@@ -110,6 +110,40 @@ while True:
             _ = input('Presione enter para volver al menú principal ')
             break
 
+    ##4 Medallas atleta
+
+    elif opcion =='4':
+        os.system(cls)
+        id = input("Indique el ID del atleta a consultar: ")
+
+        atleta = ol.findAthlete(id, registry)
+
+        print('{:<30} {:<30} {:<30} {:<8} {:<8} {:<8} '.format('Nombre', 'Pais', 'Deporte', 'Oro', 'Plata', 'Bronce')) 
+        if atleta:
+            print('{:<30} {:<30}  {:<30} {:<8d} {:<8d} {:<8d} '.format(atleta['name'], atleta['country'], atleta['sport'], int(atleta['gold']), int(atleta['silver']), int(atleta['bronze']))) 
+        
+        while True:
+            _ = input('Presione enter para volver al menú principal ')
+            break
+
+
+    ##5 Medallero por deporte
+
+    elif opcion =='5':
+        os.system(cls)
+        sport = input("Indique el deporte a consultar: ")
+
+        atletas = ol.bySport(sport, registry)
+
+        print('{:<30} {:<30} {:<8} {:<8} {:<8} '.format('Nombre', 'Pais', 'Oro', 'Plata', 'Bronce')) 
+
+        for atleta in atletas:
+            print('{:<30} {:<30} {:<8d} {:<8d} {:<8d} '.format(atleta['name'], atleta['country'], int(atleta['gold']), int(atleta['silver']), int(atleta['bronze']))) 
+        
+        while True:
+            _ = input('Presione enter para volver al menú principal ')
+            break
+            
     ##6
 
     elif opcion =='6':
