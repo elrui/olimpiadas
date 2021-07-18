@@ -110,6 +110,26 @@ while True:
             _ = input('Presione enter para volver al menú principal ')
             break
 
+    ##3 País con mas medallas, medallero por deporte
+
+    elif opcion == '3':
+        os.system(cls)
+
+        country = ol.topMedalistCountry(registry)
+        print('El país con más medallas es:', country)
+        print()
+
+        medallero = ol.sportMedalsByCountry(country, registry)
+
+        print('{:<30} {:<8} {:<8} {:<8} '.format('Deporte', 'Oro', 'Plata', 'Bronce')) 
+
+        for deporte, med in medallero.items():
+            print('{:<30} {:<8d} {:<8d} {:<8d} '.format(deporte, int(med['gold']), int(med['silver']), int(med['bronze'])))
+
+        while True:
+            _ = input('Presione enter para volver al menú principal ')
+            break
+
     ##4 Medallas atleta
 
     elif opcion =='4':

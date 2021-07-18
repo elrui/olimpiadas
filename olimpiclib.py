@@ -131,5 +131,44 @@ def totalByCountry(country, registry):
             bronze += int(person['bronze'])
     
     return (gold, silver, bronze)
-            
+
+def topMedalistCountry(registry):
+    '''
+    This function returns the country with most medals
+    '''
+    medals = {}
+
+    for athlete in registry:
+        if athlete['country'] in medals:
+            medals[athlete['country']] += int(athlete['gold']) + int(athlete['silver']) + int(athlete['bronze'])
+        else:
+            medals[athlete['country']] = int(athlete['gold']) + int(athlete['silver']) + int(athlete['bronze'])
+
+    sorted_countries = sorted(medals.items(), key=lambda x : x[1], reverse=True)    ## Order countries by total medals, from max to min
+
+    return sorted_countries[0][0]
+
+def sportMedalsByCountry(country, registry):
+    val_athletes = []
+    for athlete in registry:
+        if athlete['country'] == country:
+            val_athletes.append(athlete)
+    
+    # Now we have al the athletes for a country
+    # Let's make a summary by sport
+
+    medals = {}
+
+    for vath in val_athletes:
+        if vath['sport'] in medals:
+            medals[vath['sport']]['gold'] += int(vath['gold'])
+            medals[vath['sport']]['silver'] += int(vath['silver'])
+            medals[vath['sport']]['bronze'] += int(vath['bronze'])
+        else:
+            medals[vath['sport']] = {}
+            medals[vath['sport']]['gold'] = int(vath['gold'])
+            medals[vath['sport']]['silver'] = int(vath['silver'])
+            medals[vath['sport']]['bronze'] = int(vath['bronze'])
+
+    return medals 
 
