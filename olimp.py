@@ -21,7 +21,8 @@ import platform
 
 import olimpiclib as ol 
 
-filename='medallero.csv'
+filename='medallero.txt'
+delimiter='#'
 
 # Verificar si el archivo existe, y de no ser así, crearlo vacío
 if not os.path.isfile(filename):
@@ -46,7 +47,7 @@ def menu():
 
 #Se invoca la función
 while True:
-    registry = ol.readFile(filename)    # leer el archivo y actualizar el registro cada vez que se carga el menu
+    registry = ol.readFile(filename, delimiter=delimiter)    # leer el archivo y actualizar el registro cada vez que se carga el menu
     opcion = menu()
     
     ##1 Registrar atleta
@@ -89,7 +90,7 @@ while True:
             if otro != 's':
                 break    
 
-        ol.writeFile(filename, registry)    # Actualizar el archivo en disco
+        ol.writeFile(filename, registry, delimiter=delimiter)    # Actualizar el archivo en disco
 
 
     ##2 Medallas por país

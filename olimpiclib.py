@@ -11,7 +11,7 @@ FIELDS = ['id', 'name', 'country', 'sport', 'gold', 'silver', 'bronze']
 
 ## Create a dictionary {id: Athlete}
 
-def readFile(filename, fields=FIELDS):
+def readFile(filename, fields=FIELDS, delimiter=','):
     '''
     This function takes a filename and returns a list of records from the file
     The records are of type dictionary
@@ -19,14 +19,14 @@ def readFile(filename, fields=FIELDS):
 
     athletes = [] 
     with open(filename, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)     # don't pass fields if file has headers
+        reader = csv.DictReader(csvfile, delimiter=delimiter)     # don't pass fields if file has headers
     
         for row in reader:
             athletes.append(row)
 
     return athletes
             
-def writeFile(filename, athletes, fields=FIELDS):
+def writeFile(filename, athletes, fields=FIELDS, delimiter=','):
     '''
     This function takes a filename and a list of records, and save the records in said file
     Fields must be specified in order to write headers
@@ -34,7 +34,7 @@ def writeFile(filename, athletes, fields=FIELDS):
     '''
 
     with open(filename, 'w', newline='') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=fields)
+        writer = csv.DictWriter(csvfile, fieldnames=fields, delimiter=delimiter)
 
         writer.writeheader()
         for row in athletes:
